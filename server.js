@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
   res.render("index", { titulo: "inicio EJS" });
 });
 
-app.get("/alumno", (req, res) => {
+app.get("/alumnos", (req, res) => {
   res.render("alumno", {
     nombre: "Marcos",
     apellidos: "Morán Cañón",
@@ -21,12 +21,12 @@ app.get("/alumno", (req, res) => {
   });
 });
 
-app.use((req, res, next) => {
-  res.status(404).render("404", { titulo: "Página 404" });
-});
-
 // Rutas
-// require("./app/routes/article.routes.js")(app);
+require("./app/routes/alumno.routes.js")(app);
+
+app.use((req, res, next) => {
+  res.status(404).render("404", { titulo: "Página 404", rutaImg: "404.jpg" });
+});
 
 // set port, listen for requests
 const PORT = process.env.PORT || port;
